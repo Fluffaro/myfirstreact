@@ -3,6 +3,7 @@ import './App.css';
 import Greet from './components/Greet';
 import Message from './components/Message';
 import Button from './components/Button';
+import Hello from './components/Hello';
 function App() {
         
   return (
@@ -12,6 +13,7 @@ function App() {
         <p>
           Neil Joey Villarey First Page React
         </p>
+           <p>{Hello()}</p>
         <Greet name="Nanay" name2="Mo">
            <Message/>
         </Greet>
