@@ -1,7 +1,7 @@
 import httpclient from "../commons/httpclient"
 
 const getEmployees = () =>{
-    return httpclient.get('/employees');
+    return httpclient.get('/api/employees');
 };
 
 export default {getEmployees}
