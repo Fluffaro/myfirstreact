@@ -14,8 +14,7 @@ function Home() {
       <header className="App-header"
           style={{
         backgroundImage: "url(" + Gif + ")",
-        backgroundSize: "cover",
-        height: "0in",
+        backgroundSize: "cover"
       }}>
         <p>
           Neil Joey Villarey
