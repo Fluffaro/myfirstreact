@@ -20,16 +20,20 @@ const Employee = () =>{
         }
     );
     return(
-        <div>
+        <div className="container">
             <h3>List of Employees</h3>
             <div>
-                <table border = "1">
-                    <tr>
+                <table className="table table-hover table-light table-striped">
+                <thead>
+        <tr className="table-danger">
                         <td>Name</td>
                         <td>Location</td>
                         <td>Department</td>
                     </tr>
-                    {
+    </thead>
+
+    <tbody>
+                        {
                         Employees.map(
                             Employee =>(
                                 <tr>
@@ -40,6 +44,8 @@ const Employee = () =>{
                             )
                         )
                     }
+    </tbody>
+
                 </table>
             </div>
         </div>
