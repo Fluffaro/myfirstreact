@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from "./Home";
 import Employee from "./Employee";
 import PageNotFound from "./PageNotFound";
-
+import AddEmployee from "../services/AddEmployee";
 
 const Router = () =>{
     return(
@@ -14,7 +14,8 @@ const Router = () =>{
                         <Route exact path="/myfirstreact" element={<Home />} />
                         <Route exact path="/employees" element={<Employee/>}/>
                         <Route exact path="*" element={<PageNotFound/>}/>
-                                
+                        <Route exact path="/add" element={<AddEmployee />} />
+                        <Route exact path="/edit/:employeeId" element={<AddEmployee />} />
                 </Routes>
             </BrowserRouter>
         </div>

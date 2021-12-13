@@ -1,55 +1,89 @@
-import employeeService from "../services/employeeService";
 import {useEffect, useState } from "react";
+import employeeService from "../services/employeeService";
+import {Link} from "react-router-dom";
 
-const Employee = () =>{
-    const[Employees, setEmployees] = useState([]);
-    
+const Employee = () => {
+
+    const[employees, setEmployees] = useState([])
+
     useEffect(
-            () =>{
-                employeeService.getEmployees()
-                .then(
-                response =>{
-                setEmployees(response.data);
+            () => {
+      refreshEmployeeTable();
+    }
+    )
+
+    const refreshEmployeeTable = () =>{
+        employeeService.getEmployees()
+            .then(
+                response => {
+                    setEmployees(response.data)
+
                 }
             )
-                .catch(
-                    () =>(
-                        console.log("pasensya ule")
-                )
-            );
-        }
-    );
+            .catch(
+                () =>
+                {
+                    console.log("got an error!")
+                }
+            )
+
+    }
+
+    const deleteEmployee = (employeeId) =>{
+        employeeService.deleteEmployee(employeeId)
+            .then(
+                response =>{
+                    console.log("successfully deleted!")
+                    refreshEmployeeTable();
+                }
+            )
+            .catch(
+                error =>{
+                    console.error("got an errorE!", error)
+                }
+            )
+
+    }
+
     return(
-        <div className="container">
-            <h3>List of Employees</h3>
             <div>
-                <table className="table table-hover table-light table-striped">
-                <thead>
-        <tr className="table-danger">
-                        <td>Name</td>
-                        <td>Location</td>
-                        <td>Department</td>
-                    </tr>
-    </thead>
-
-    <tbody>
+                <h3> 
+                    List of Employees </h3>
+                <div className="container ">
+                    <table className = "table table-hover table-light table-striped" >
+                    <thead>
+                    <tr class = "table-danger"> 
+                            <td>Name</td>
+                            <td>Location</td>
+                            <td>Department</td>
+                            <td>Action</td>
+                            </tr>
+                            </thead>
+                            <tbody>
                         {
-                        Employees.map(
-                            Employee =>(
-                                <tr>
-                                    <td>{Employee.name}</td>
-                                    <td>{Employee.location}</td>
-                                    <td>{Employee.department}</td>
-                                </tr>
-                            )
-                        )
-                    }
-    </tbody>
+                            employees.map(
+                                    employee => (
+                                        <tr key={employee.employeeId}>
+                                            <td>{employee.name}</td>
+                                            <td>{employee.department}</td>
+                                            <td>{employee.location}</td>
+                                            <td>
+                                                <div className="d-grid gap-2 d-md-flex justify-content-center">
+                                                <Link className="btn btn-outline-primary" to={`/edit/${employee.employeeId}`}>Update</Link>
+                                                <button className="btn btn-outline-danger" onClick={(e)=>deleteEmployee(employee.employeeId)}>Delete</button>
+                                                </div>
+                                            </td>
 
-                </table>
+                                        </tr>
+                                                )
+                            )
+                        }
+                        </tbody>
+                        
+                    </table>
+                </div>
             </div>
-        </div>
-    );
-};
+            )
+}
 
 export default Employee
