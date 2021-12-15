@@ -20,7 +20,7 @@ const AddEmployee = () =>{
             employeeService.putEmployee(employee)
                 .then(
                     response =>{
-                        console.log("updated employee", response. data)
+                        console.log("updated employee", response.data)
                         navigate("/myfirstreact/employees")
                     }
                 )
@@ -39,7 +39,7 @@ const AddEmployee = () =>{
             employeeService.postEmployee(employee)
                 .then(
                     response =>{
-                        console.log("added new employee", response. data)
+                        console.log("added new employee", response.data)
                         navigate("/myfirstreact/employees")
                     }
                 )
